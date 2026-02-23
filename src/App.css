@@ -1,38 +1,239 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-container {
   min-height: 100vh;
+  background-color: #f4f5f7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #172b4d;
+}
+
+.app-header {
+  padding: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  position: relative;
+}
+
+.refresh-btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.refresh-btn:hover {
+  background-color: #0065ff;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.board {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  overflow-x: auto;
+  align-items: flex-start;
+}
+
+.column {
+  background-color: #ebecf0;
+  border-radius: 8px;
+  min-width: 280px;
+  max-width: 280px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px 15px;
+}
+
+.column-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-card {
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.task-drag-handle {
+  flex: 1;
+}
+
+.delete-task-btn {
+  background: transparent;
+  border: none;
+  border-radius: 3px;
+  color: #6b778c;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.task-card:hover .delete-task-btn {
+  opacity: 1;
+}
+
+.delete-task-btn:hover {
+  background-color: rgba(9, 30, 66, 0.08);
+  color: #eb5757;
+}
+
+.task-card:hover {
+  background-color: #f4f5f7;
+}
+
+/* Drag and Drop styles */
+.sortable-item {
+  touch-action: none;
+}
+
+.task-card.is-dragging {
+  opacity: 0.5;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+.droppable-column {
+  min-height: 50px;
+}
+
+/* New task input styles */
+.add-task-container {
+  margin-top: 10px;
+  padding: 0 5px;
+}
+
+.add-task-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: #5e6c84;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+}
+
+.add-task-btn:hover {
+  background-color: rgba(9, 30, 66, 0.08);
+  color: #172b4d;
+}
+
+.task-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-input-area textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 2px solid #0079bf;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.task-input-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.save-task-btn {
+  padding: 6px 12px;
+  background-color: #0079bf;
   color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 500;
 }
 
-.App-link {
-  color: #61dafb;
+.save-task-btn:hover {
+  background-color: #026aa7;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cancel-task-btn {
+  padding: 6px;
+  background: transparent;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #6b778c;
 }
+
+.cancel-task-btn:hover {
+  color: #172b4d;
+}
+
+/* Cat-like polish */
+.app-header h1 {
+  margin: 0;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.column {
+  border-top: 4px solid #0079bf;
+}
+
+.column:nth-child(1) { border-top-color: #ff9f1a; }
+.column:nth-child(2) { border-top-color: #00c2e0; }
+.column:nth-child(3) { border-top-color: #f2d600; }
+.column:nth-child(4) { border-top-color: #51e898; }

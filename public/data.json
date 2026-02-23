@@ -1,0 +1,7 @@
+[
+  { "id": "1", "content": "Define project structure", "status": "done" },
+  { "id": "2", "content": "Create React app", "status": "done" },
+  { "id": "3", "content": "Implement Trello-like board UI", "status": "done" },
+  { "id": "4", "content": "Connect to OpenClaw memory API", "status": "in-progress" },
+  { "id": "5", "content": "Implement JSON Fetch Logic", "status": "backlog" }
+]
